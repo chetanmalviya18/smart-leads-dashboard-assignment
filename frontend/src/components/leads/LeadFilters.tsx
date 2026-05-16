@@ -1,5 +1,5 @@
-import { Search, Filter, SortAsc, SortDesc } from 'lucide-react';
-import { LeadStatus, LeadSource, LeadFilters, SortOrder } from '../../types';
+import { Search, Filter } from "lucide-react";
+import { LeadStatus, LeadSource, LeadFilters, SortOrder } from "../../types";
 
 interface LeadFiltersBarProps {
   filters: LeadFilters;
@@ -8,8 +8,8 @@ interface LeadFiltersBarProps {
   totalCount: number;
 }
 
-const STATUSES: LeadStatus[] = ['New', 'Contacted', 'Qualified', 'Lost'];
-const SOURCES: LeadSource[] = ['Website', 'Instagram', 'Referral'];
+const STATUSES: LeadStatus[] = ["New", "Contacted", "Qualified", "Lost"];
+const SOURCES: LeadSource[] = ["Website", "Instagram", "Referral"];
 
 export const LeadFiltersBar = ({
   filters,
@@ -40,32 +40,36 @@ export const LeadFiltersBar = ({
 
         {/* Status filter */}
         <select
-          value={filters.status || ''}
-          onChange={(e) => onFilterChange('status', e.target.value)}
+          value={filters.status || ""}
+          onChange={(e) => onFilterChange("status", e.target.value)}
           className="input-base !w-auto text-xs py-2"
         >
           <option value="">All Statuses</option>
           {STATUSES.map((s) => (
-            <option key={s} value={s}>{s}</option>
+            <option key={s} value={s}>
+              {s}
+            </option>
           ))}
         </select>
 
         {/* Source filter */}
         <select
-          value={filters.source || ''}
-          onChange={(e) => onFilterChange('source', e.target.value)}
+          value={filters.source || ""}
+          onChange={(e) => onFilterChange("source", e.target.value)}
           className="input-base !w-auto text-xs py-2"
         >
           <option value="">All Sources</option>
           {SOURCES.map((s) => (
-            <option key={s} value={s}>{s}</option>
+            <option key={s} value={s}>
+              {s}
+            </option>
           ))}
         </select>
 
         {/* Sort */}
         <select
           value={filters.sort}
-          onChange={(e) => onFilterChange('sort', e.target.value as SortOrder)}
+          onChange={(e) => onFilterChange("sort", e.target.value as SortOrder)}
           className="input-base !w-auto text-xs py-2"
         >
           <option value="latest">Latest First</option>
@@ -74,7 +78,7 @@ export const LeadFiltersBar = ({
 
         {/* Result count */}
         <span className="ml-auto text-xs text-gray-500 dark:text-gray-400">
-          {totalCount} lead{totalCount !== 1 ? 's' : ''}
+          {totalCount} lead{totalCount !== 1 ? "s" : ""}
         </span>
       </div>
     </div>

@@ -1,13 +1,19 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Pencil, Trash2, Eye, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Lead, PaginationMeta } from '../../types';
-import { StatusBadge, SourceBadge, Spinner, EmptyState, ConfirmDialog } from '../ui';
-import { Modal } from '../ui';
-import { LeadForm } from './LeadForm';
-import { useUpdateLead, useDeleteLead } from '../../hooks/useLeads';
-import { useAuthStore } from '../../store/authStore';
-import { CreateLeadPayload } from '../../types';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Pencil, Trash2, Eye, ChevronLeft, ChevronRight } from "lucide-react";
+import { Lead, PaginationMeta } from "../../types";
+import {
+  StatusBadge,
+  SourceBadge,
+  Spinner,
+  EmptyState,
+  ConfirmDialog,
+} from "../ui";
+import { Modal } from "../ui";
+import { LeadForm } from "./LeadForm";
+import { useUpdateLead, useDeleteLead } from "../../hooks/useLeads";
+import { useAuthStore } from "../../store/authStore";
+import { CreateLeadPayload } from "../../types";
 
 interface LeadTableProps {
   leads: Lead[];
@@ -17,13 +23,18 @@ interface LeadTableProps {
 }
 
 const formatDate = (date: string) =>
-  new Date(date).toLocaleDateString('en-IN', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
+  new Date(date).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
   });
 
-export const LeadTable = ({ leads, isLoading, meta, onPageChange }: LeadTableProps) => {
+export const LeadTable = ({
+  leads,
+  isLoading,
+  meta,
+  onPageChange,
+}: LeadTableProps) => {
   const navigate = useNavigate();
   const { user } = useAuthStore();
   const updateLead = useUpdateLead();
@@ -33,7 +44,9 @@ export const LeadTable = ({ leads, isLoading, meta, onPageChange }: LeadTablePro
   const [deletingId, setDeletingId] = useState<string | null>(null);
 
   const canEdit = (lead: Lead) =>
-    user?.role === 'admin' || lead.createdBy?.id === user?.id || lead.createdBy?._id === user?.id;
+    user?.role === "admin" ||
+    lead.createdBy?.id === user?.id ||
+    lead.createdBy?._id === user?.id;
 
   const handleUpdate = async (data: CreateLeadPayload) => {
     if (!editLead) return;
@@ -71,12 +84,24 @@ export const LeadTable = ({ leads, isLoading, meta, onPageChange }: LeadTablePro
         <table className="w-full text-sm">
           <thead>
             <tr className="bg-gray-50 dark:bg-surface-hover border-b border-gray-200 dark:border-surface-border">
-              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Name</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden sm:table-cell">Email</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Status</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden md:table-cell">Source</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden lg:table-cell">Created</th>
-              <th className="text-right px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">Actions</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Name
+              </th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden sm:table-cell">
+                Email
+              </th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Status
+              </th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden md:table-cell">
+                Source
+              </th>
+              <th className="text-left px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider hidden lg:table-cell">
+                Created
+              </th>
+              <th className="text-right px-4 py-3 text-xs font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wider">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100 dark:divide-surface-border">
@@ -87,12 +112,18 @@ export const LeadTable = ({ leads, isLoading, meta, onPageChange }: LeadTablePro
               >
                 <td className="px-4 py-3.5">
                   <div>
-                    <p className="font-medium text-gray-900 dark:text-gray-100">{lead.name}</p>
-                    <p className="text-xs text-gray-500 dark:text-gray-400 sm:hidden">{lead.email}</p>
+                    <p className="font-medium text-gray-900 dark:text-gray-100">
+                      {lead.name}
+                    </p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 sm:hidden">
+                      {lead.email}
+                    </p>
                   </div>
                 </td>
                 <td className="px-4 py-3.5 hidden sm:table-cell">
-                  <span className="text-gray-600 dark:text-gray-400 font-mono text-xs">{lead.email}</span>
+                  <span className="text-gray-600 dark:text-gray-400 font-mono text-xs">
+                    {lead.email}
+                  </span>
                 </td>
                 <td className="px-4 py-3.5">
                   <StatusBadge status={lead.status} />
@@ -101,7 +132,9 @@ export const LeadTable = ({ leads, isLoading, meta, onPageChange }: LeadTablePro
                   <SourceBadge source={lead.source} />
                 </td>
                 <td className="px-4 py-3.5 hidden lg:table-cell">
-                  <span className="text-xs text-gray-500 dark:text-gray-400">{formatDate(lead.createdAt)}</span>
+                  <span className="text-xs text-gray-500 dark:text-gray-400">
+                    {formatDate(lead.createdAt)}
+                  </span>
                 </td>
                 <td className="px-4 py-3.5">
                   <div className="flex items-center justify-end gap-1">
@@ -142,7 +175,8 @@ export const LeadTable = ({ leads, isLoading, meta, onPageChange }: LeadTablePro
       {meta && meta.totalPages > 1 && (
         <div className="flex items-center justify-between mt-4">
           <p className="text-sm text-gray-500 dark:text-gray-400">
-            Page {meta.currentPage} of {meta.totalPages} &nbsp;·&nbsp; {meta.totalCount} total
+            Page {meta.currentPage} of {meta.totalPages} &nbsp;·&nbsp;{" "}
+            {meta.totalCount} total
           </p>
           <div className="flex gap-2">
             <button

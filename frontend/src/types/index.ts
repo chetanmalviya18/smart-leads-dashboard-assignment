@@ -1,9 +1,10 @@
-export type UserRole = 'admin' | 'sales';
-export type LeadStatus = 'New' | 'Contacted' | 'Qualified' | 'Lost';
-export type LeadSource = 'Website' | 'Instagram' | 'Referral';
-export type SortOrder = 'latest' | 'oldest';
+export type UserRole = "admin" | "sales";
+export type LeadStatus = "New" | "Contacted" | "Qualified" | "Lost";
+export type LeadSource = "Website" | "Instagram" | "Referral";
+export type SortOrder = "latest" | "oldest";
 
 export interface User {
+  _id: string | undefined;
   id: string;
   name: string;
   email: string;
@@ -49,8 +50,8 @@ export interface AuthResponse {
 export interface LeadFilters {
   page: number;
   limit: number;
-  status?: LeadStatus | '';
-  source?: LeadSource | '';
+  status?: LeadStatus | "";
+  source?: LeadSource | "";
   search: string;
   sort: SortOrder;
 }

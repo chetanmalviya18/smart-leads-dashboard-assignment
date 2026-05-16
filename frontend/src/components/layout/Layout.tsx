@@ -1,4 +1,4 @@
-import { Outlet, NavLink, useNavigate } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from "react-router-dom";
 import {
   LayoutDashboard,
   Users,
@@ -6,18 +6,17 @@ import {
   Sun,
   Moon,
   Menu,
-  X,
   Zap,
   Shield,
-} from 'lucide-react';
-import { useState } from 'react';
-import clsx from 'clsx';
-import { useAuthStore } from '../../store/authStore';
-import { useThemeStore } from '../../store/themeStore';
+} from "lucide-react";
+import { useState } from "react";
+import clsx from "clsx";
+import { useAuthStore } from "../../store/authStore";
+import { useThemeStore } from "../../store/themeStore";
 
 const navItems = [
-  { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
-  { to: '/leads', icon: Users, label: 'Leads' },
+  { to: "/dashboard", icon: LayoutDashboard, label: "Dashboard" },
+  { to: "/leads", icon: Users, label: "Leads" },
 ];
 
 export const Layout = () => {
@@ -28,14 +27,14 @@ export const Layout = () => {
 
   const handleLogout = () => {
     clearAuth();
-    navigate('/login');
+    navigate("/login");
   };
 
   const Sidebar = ({ mobile = false }: { mobile?: boolean }) => (
     <aside
       className={clsx(
-        'flex flex-col h-full bg-white dark:bg-surface-card border-r border-gray-200 dark:border-surface-border',
-        mobile ? 'w-64' : 'w-64'
+        "flex flex-col h-full bg-white dark:bg-surface-card border-r border-gray-200 dark:border-surface-border",
+        mobile ? "w-64" : "w-64",
       )}
     >
       {/* Logo */}
@@ -57,10 +56,10 @@ export const Layout = () => {
             onClick={() => setSidebarOpen(false)}
             className={({ isActive }) =>
               clsx(
-                'flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150',
+                "flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150",
                 isActive
-                  ? 'bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400'
-                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-surface-hover hover:text-gray-900 dark:hover:text-gray-200'
+                  ? "bg-brand-50 dark:bg-brand-950 text-brand-700 dark:text-brand-400"
+                  : "text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-surface-hover hover:text-gray-900 dark:hover:text-gray-200",
               )
             }
           >
