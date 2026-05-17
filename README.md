@@ -260,11 +260,9 @@ npm run lint     # Run ESLint
 ## 🙋 Author
 
 **Your Name**
-- GitHub: [@your-username](https://github.com/your-username)
-- Email: your@email.com
+- GitHub: [@chetanmalviya18](https://github.com/chetanmalviya18)
+- Email: chetanmalviya.182@gmail.com
 
 ---
 
-## 📄 License
 
-MIT
