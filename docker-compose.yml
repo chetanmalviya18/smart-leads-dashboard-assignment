@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   mongodb:
@@ -6,7 +6,7 @@ services:
     container_name: smart-leads-mongo
     restart: unless-stopped
     ports:
-      - '27017:27017'
+      - "27017:27017"
     volumes:
       - mongo_data:/data/db
     environment:
@@ -21,7 +21,7 @@ services:
     container_name: smart-leads-backend
     restart: unless-stopped
     ports:
-      - '5000:5000'
+      - "5000:5000"
     environment:
       PORT: 5000
       NODE_ENV: production
@@ -31,19 +31,6 @@ services:
       FRONTEND_URL: http://localhost:5173
     depends_on:
       - mongodb
-    networks:
-      - smart-leads-network
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    container_name: smart-leads-frontend
-    restart: unless-stopped
-    ports:
-      - '5173:80'
-    depends_on:
-      - backend
     networks:
       - smart-leads-network
 

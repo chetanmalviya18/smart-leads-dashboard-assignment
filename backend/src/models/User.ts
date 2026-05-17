@@ -28,6 +28,7 @@ const UserSchema = new Schema<IUserDocument>(
       lowercase: true,
       trim: true,
       match: [/^\S+@\S+\.\S+$/, "Please enter a valid email"],
+      index: true,
     },
     password: {
       type: String,
@@ -66,8 +67,5 @@ UserSchema.methods.comparePassword = async function (
 ): Promise<boolean> {
   return bcrypt.compare(candidatePassword, this.password);
 };
-
-// Index for faster email lookups
-UserSchema.index({ email: 1 });
 
 export default mongoose.model<IUserDocument>("User", UserSchema);
